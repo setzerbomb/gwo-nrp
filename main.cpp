@@ -16,8 +16,19 @@ struct Wolf {
 
 int size = 10;
 
-Feature *problem;
-
+//Feature *problem;
+Feature problem[10] = {
+        {3,  20},
+        {5,  50},
+        {2,  40},
+        {13, 100},
+        {5,  40},
+        {8,  10},
+        {5,  20},
+        {5,  40},
+        {3,  30},
+        {3,  10}
+};
 // Limit of story points to consider for selection
 int max_story_points = 20;
 
@@ -249,6 +260,7 @@ int main() {
 
     srand((unsigned) time(NULL));
 
+    /*
     size = gen(1.0, 10.0) * 5;
     problem = (Feature *) malloc(sizeof(Feature) * size);
     #pragma omp parallel
@@ -262,7 +274,7 @@ int main() {
             #pragma omp taskwait
         }
     }
-
+    */
 
     printf("\nBegin grey wolf optimization on NRP client satisfaction\n");
 
