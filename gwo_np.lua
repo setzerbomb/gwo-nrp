@@ -133,10 +133,11 @@ local gwo = function(fitness, max_iter, n, dim, minx, maxx)
       local X3 = {}
       local nextPos = {}
 
+      local A1, A2, A3 = a * (alpha_const * math.random() - 1), a * (
+              alpha_const * math.random() - 1), a * (alpha_const * math.random() - 1)
+      local C1, C2, C3 = alpha_const * math.random(), alpha_const*math.random(), alpha_const*math.random()
+
       for j = 1,dim do
-        local A1, A2, A3 = a * (alpha_const * math.random() - 1), a * (
-        alpha_const * math.random() - 1), a * (alpha_const * math.random() - 1)
-        local C1, C2, C3 = alpha_const * math.random(), alpha_const*math.random(), alpha_const*math.random()
 
         X1[j] = alpha_wolf.position[j] - A1 * math.abs(
         C1 * alpha_wolf.position[j] - population[i].position[j])

@@ -15,9 +15,9 @@ struct Wolf {
     double *position;
 };
 
-int size = 100;
+int size = 10;
 
-Feature problem[100] = {
+Feature problem[10] = {
         {8, 40},
         {34, 10},
         {55, 90},
@@ -28,96 +28,7 @@ Feature problem[100] = {
         {55, 70},
         {5, 80},
         {5, 50},
-        {1, 10},
-        {21, 80},
-        {21, 50},
-        {3, 80},
-        {13, 90},
-        {2, 100},
-        {13, 40},
-        {5, 90},
-        {5, 70},
-        {1, 70},
-        {21, 30},
-        {21, 10},
-        {3, 10},
-        {34, 50},
-        {55, 60},
-        {34, 20},
-        {21, 20},
-        {55, 30},
-        {13, 30},
-        {21, 20},
-        {8, 80},
-        {3, 100},
-        {2, 10},
-        {21, 40},
-        {21, 100},
-        {34, 40},
-        {3, 100},
-        {3, 60},
-        {34, 40},
-        {21, 10},
-        {21, 60},
-        {21, 20},
-        {8, 70},
-        {34, 60},
-        {2, 50},
-        {8, 80},
-        {13, 50},
-        {55, 40},
-        {8, 90},
-        {2, 90},
-        {8, 60},
-        {13, 30},
-        {1, 40},
-        {34, 80},
-        {3, 50},
-        {3, 20},
-        {21, 80},
-        {1, 10},
-        {8, 80},
-        {1, 70},
-        {21, 60},
-        {55, 40},
-        {34, 100},
-        {34, 10},
-        {21, 70},
-        {34, 60},
-        {1, 20},
-        {3, 60},
-        {3, 20},
-        {8, 10},
-        {5, 50},
-        {55, 90},
-        {55, 30},
-        {13, 20},
-        {3, 60},
-        {13, 30},
-        {21, 10},
-        {2, 70},
-        {3, 10},
-        {8, 100},
-        {2, 100},
-        {8, 60},
-        {1, 80},
-        {5, 70},
-        {2, 10},
-        {1, 10},
-        {8, 40},
-        {34, 50},
-        {8, 100},
-        {1, 30},
-        {1, 20},
-        {34, 100},
-        {1, 10},
-        {8, 30},
-        {5, 50},
-        {34, 10},
-        {1, 60},
-        {1, 100},
-        {2, 10},
-        {55, 80}
+
 };
 
 // Limit of story points to consider for selection
@@ -260,7 +171,7 @@ double *gwo(int max_iter, int n, int dim, int minx, int maxx) {
 
         if (iter % 10 == 0 && iter > 1) {
 
-            //printf("Iter = %d best fitness = %f\n", iter, alpha_wolf->fitness);
+            printf("Iter = %d best fitness = %f\n", iter, alpha_wolf->fitness);
             if (alpha_wolf->fitness == previous_alpha) {
                 explore = true;
                 explore_counter++;
@@ -279,14 +190,15 @@ double *gwo(int max_iter, int n, int dim, int minx, int maxx) {
             double X3[dim];
             double nextPos[dim];
 
-            for (int j = 0; j < dim; j++) {
-                double A1 = a * (2 * gen(0.0, 1.0) - 1);
-                double A2 = a * (2 * gen(0.0, 1.0) - 1);
-                double A3 = a * (2 * gen(0.0, 1.0) - 1);
+            double A1 = a * (2 * gen(0.0, 1.0) - 1);
+            double A2 = a * (2 * gen(0.0, 1.0) - 1);
+            double A3 = a * (2 * gen(0.0, 1.0) - 1);
 
-                double C1 = 2 * gen(0.0, 1.0);
-                double C2 = 2 * gen(0.0, 1.0);
-                double C3 = 2 * gen(0.0, 1.0);
+            double C1 = 2 * gen(0.0, 1.0);
+            double C2 = 2 * gen(0.0, 1.0);
+            double C3 = 2 * gen(0.0, 1.0);
+
+            for (int j = 0; j < dim; j++) {
 
                 X1[j] = alpha_wolf->position[j] - A1 * abs(
                         C1 * alpha_wolf->position[j] - population[i].position[j]);
@@ -388,6 +300,10 @@ int main() {
     clock_t end = clock();
     double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     printf("Time spent %.6f", time_spent);
+
+    if (err > 1) {
+        printf("Solução impossível");
+    }
 
     return 0;
 }
